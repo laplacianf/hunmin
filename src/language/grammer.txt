@@ -1,0 +1,20 @@
+<변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
+
+<함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 함 -> def <함수명>(<args>): <command>
+
+<if문> := 만약 <expr> 라면|이면 <command> 함 -> if <expr>: <command>
+<else문> := 아니면 <command> 함 -> else: <command>
+<elif문> := 아니고 <expr> 라면|이면 <command> 함 -> elif <expr>: <command>
+
+<while문> := <expr> 인 동안 <command> 함 -> while <expr> : <command>
+
+<command> :=
+    <변수 정의> |
+    <if문> |
+    <else문> |
+    <elif문> |
+    <while문> |
+    <함수 정의> |
+
+ 
+
