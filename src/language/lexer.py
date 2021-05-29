@@ -21,21 +21,28 @@ class Lexer:
 
             if currentChar == ' ':
                 if self.word == '은' or self.word == '는': self.lexResult.append('IS')
-                elif self.word == '임': self.lexResult.append('END')
+                elif self.word == '임': self.lexResult.append('EOS')
                 elif self.word == '이고': self.lexResult.append('EOS')
-                elif self.word == '함': self.lexResult.append('END')
+                elif self.word == '함' or self.word == '하고': self.lexResult.append('END')
                 elif self.word == '이면' or self.word == '라면': self.lexResult.append('THEN')
                 elif self.word == '인': self.lexResult.append('WHILE')
                 elif self.word == '만약': self.lexResult.append('IF')
                 elif self.word == '아니면': self.lexResult.append('ELSE')
                 elif self.word == '아니고': self.lexResult.append('ELIF')
                 elif self.word == '함수': self.lexResult.append('FUNCTION')
+                elif self.word == '다음': self.lexResult.append('RETURN')
+                elif self.word == '반환': self.lexResult.append('EOR')
                 elif self.word == '을' or self.word == '를': pass
 
                 elif self.word == '더하기': self.lexResult.append('+')
                 elif self.word == '빼기': self.lexResult.append('-')
                 elif self.word == '곱하기': self.lexResult.append('*')
                 elif self.word == '나누기': self.lexResult.append('/')
+
+                elif self.word == '이상': self.lexResult.append('>=')
+                elif self.word == '초과': self.lexResult.append('>')
+                elif self.word == '이하': self.lexResult.append('<=')
+                elif self.word == '미만': self.lexResult.append('<')
 
                 elif self.word == '제곱': self.lexResult.append('**')
                 elif self.word == '나눈나머지': self.lexResult.append('%')
@@ -46,6 +53,9 @@ class Lexer:
 
                 elif self.word == '그리고': self.lexResult.append('AND')
                 elif self.word == '또는': self.lexResult.append('OR')
+
+                elif self.word == '참': self.lexResult.append('True')
+                elif self.word == '거짓': self.lexResult.append('False')
 
 
 
@@ -61,23 +71,8 @@ class Lexer:
 
 
 code = '''
-함수 아무거나(숫자) 는 
-    만약 숫자 가 3 또는 숫자 더하기 5 빼기 6 곱하기 7 이 8 이면 
-        숫자 는 1 임
-    을 함
-    아니면 
-        숫자 는 2 임 
-    을 함
-를 함 
+함수 소수인지판별(숫자) 은 만약 숫자 가 1 이면 다음 거짓 을 반환 하고 아니면 나눔 은 2 이고 나눔 미만 숫자 인 동안 만약 숫자 나눗셈 나머지 가 0 이면 다음 거짓 을 반환 함 나눔 은 나눔 더하기 1 임을 하고 다음 참 을 반환 을 함 
 
-
-함수 제곱(숫자) 는
-    숫자 는 숫자 곱하기 숫자 
-
-를 함 
-
-가 는 5 임 
-나 는 6 이고 다 는 나 더하기 6 임
 '''
             
 L = Lexer(''.join(code.split('\n')))
