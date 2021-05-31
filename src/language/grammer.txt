@@ -1,12 +1,13 @@
 <변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
 
-<함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 함 -> def <함수명>(<args>): <command>
+<함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 을 함|를 함|함 -> def <함수명>(<args>): <command>
 
-<if문> := 만약 <expr> 라면|이면 <command> 함 -> if <expr>: <command>
-<else문> := 아니면 <command> 함 -> else: <command>
-<elif문> := 아니고 <expr> 라면|이면 <command> 함 -> elif <expr>: <command>
+<if문> := 만약 <expr> 라면|이면 <command> 을 함|를 함|함 -> if <expr>: <command>
+<else문> := 아니면 <command> 을 함|를 함|함 -> else: <command>
+<elif문> := 아니고 <expr> 라면|이면 <command> 을 함|를 함|함 -> elif <expr>: <command>
 
-<while문> := <expr> 인 동안 <command> 함 -> while <expr> : <command>
+<while문> := <expr> 인 동안 <command> 을 함|를 함|함 -> while <expr> : <command>
+<for문> := 각각의 <list>의 <변수명> 에 대해 <command> 을 함|를 함|함 -> for <변수명> in <list>: <command>
 
 <command> :=
     <변수 정의> |
