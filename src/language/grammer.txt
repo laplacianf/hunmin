@@ -1,7 +1,7 @@
 <변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
 
 <함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 을 함|를 함|함 -> def <함수명>(<args>): <command>
-<return문> := 다음 <expr> 을|를 반환 -> return <expr>
+<return문> := 값 <expr> 을|를 반환 -> return <expr>
 
 <if문> := 만약 <expr> 라면|이면 <command> 을 함|를 함|함 -> if <expr>: <command>
 <else문> := 아니면 <command> 을 함|를 함|함 -> else: <command>
