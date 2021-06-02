@@ -28,7 +28,7 @@ class Lexer:
         elif self.word == '아니면': self.lexResult.append('else') #else문
         elif self.word == '아니고': self.lexResult.append('elif') #elif문
         elif self.word == '함수': self.lexResult.append('def') #def문
-        elif self.word == '다음': self.lexResult.append('return') #return문
+        elif self.word == '값': self.lexResult.append('return') #return문
         elif self.word == '반환': self.lexResult.append('EOR') #return문 종료
         elif self.word == '을' or self.word == '를': pass #자연스러운 처리를 위함
 
@@ -135,14 +135,14 @@ class Lexer:
 code = '''
 함수 소수인지판별(숫자) 은
     만약 숫자 가 1 이면
-        다음 거짓 을 반환 하고 
+        값 거짓 을 반환 하고 
     아니면 
         나눔 은 2 이고 
 
         나눔 미만 숫자 인 동안 
             만약 숫자 나눈나머지 나눔 이 0 이면 
-                다음 거짓 을 반환 하고
-            나눔 은 나눔 더하기 1 임 을 하고 다음 참 을 반환 함 
+                값 거짓 을 반환 하고
+            나눔 은 나눔 더하기 1 임 을 하고 값 참 을 반환 함 
 
 
 사 는 "안녕, 세상!" 이고
