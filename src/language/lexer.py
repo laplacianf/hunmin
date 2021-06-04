@@ -93,22 +93,22 @@ class Lexer:
                 elif currentChar == '(': #함수, 오브젝트 처리
                     self.checkKeywords()
 
-                    self.lexResult.append('OPENPAREN')
+                    self.lexResult.append('(')
                 
                 elif currentChar == ')':
                     self.checkKeywords()
                     
-                    self.lexResult.append('ENDPAREN')
+                    self.lexResult.append(')')
                 
                 elif currentChar == '[': #배열 처리
                     self.checkKeywords()
 
-                    self.lexResult.append('OPENLIST')
+                    self.lexResult.append('[')
 
                 elif currentChar == ']':
                     self.checkKeywords()
                     
-                    self.lexResult.append('ENDLIST')
+                    self.lexResult.append(']')
                 
                 elif currentChar == ',':
                     self.checkKeywords()
@@ -132,23 +132,5 @@ class Lexer:
         return self.lexResult
 
 
-code = '''
-현재위치 는 0 이고
-현재단어 는 "" 이고
 
-렉싱결과 는 [] 이고
-
-코드 는 코드 더하기 " " 이고
-
-문자열인가 는 거짓 임
-
-함수 단어_확인(단어) 는
-    만약 단어 가 "은" 또는 단어 가 "는" 이면 렉싱결과에 추가("=") 를 하고
-    아니고 단어 가 "임" 이면 렉싱결과에 추가("EOS") 를 하고
-
-함수 렉싱(코드) 는
-    
-
-을 함
-'''
             

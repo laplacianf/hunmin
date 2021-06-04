@@ -9,6 +9,7 @@ class Parser:
     
     def parse(self, tokens):
         currentPos = 0
+        isString = False
         tokenExpr = []
 
         while currentPos < len(tokens):
@@ -26,9 +27,19 @@ class Parser:
                 currentPos += 1 #'='를 더하는것을 방지
                 
                 try:
-                    while tokens[currentPos] != 'EOS': #선언문 종료일때까지
+                    while True: #선언문 종료일때까지/문자열 안에 'EOS'가 아니면
+                        if tokens[currentPos] == 'EOS' and not(isString):
+                            break
+
+                        if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                            isString = True
+                            
+                        elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                            isString = False
+
                         tokenExpr.append(tokens[currentPos])
                         currentPos += 1
+                        
                 except IndexError:
                     raise errors.missingEOSError
                 
