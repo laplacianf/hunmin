@@ -87,7 +87,7 @@ class Lexer:
                     self.checkKeywords()
                     
                 elif currentChar == '"': #문자열의 시작이라면
-                    self.lexResult.append('BEGINSTR')
+                    self.lexResult.append('"')
                     self.isString = True
                 
                 elif currentChar == '(': #함수, 오브젝트 처리
@@ -120,7 +120,7 @@ class Lexer:
             else:
                 if currentChar == '"': #문자열의 끝이라면
                     self.lexResult.append(self.word)
-                    self.lexResult.append('ENDSTR')
+                    self.lexResult.append('"')
                     
                     self.word = ''
 
