@@ -1,17 +1,10 @@
-class emptyStatement:
-    def __init__(self, indent, internalTokens):
-        self.indent = indent
-        self.internalTokens = internalTokens
-
-        self.parsedCode = ''
-
-
 class classStatement:
-    def __init__(self, indent, name, inherit, internalTokens):
+    def __init__(self, indent, name, inherit):
         self.indent = indent
         self.name = name
         self.inherit = inherit
-        self.internalTokens = internalTokens
+
+        self.parsedCode = ''
     
 
 
@@ -23,3 +16,14 @@ class varExprStatement:
     
     def __repr__(self):
         return '{}{} = {}\n'.format(self.indent * '    ', self.name, self.value)
+
+
+class ifStatement:
+    def __init__(self, indent, expr, parsedCode):
+        self.indent = indent
+        self.expr = expr
+
+        self.parsedCode = parsedCode
+    
+    def __repr__(self):
+        return '{}if {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)

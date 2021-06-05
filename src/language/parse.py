@@ -1,53 +1,111 @@
+from io import open_code
 import language.ast as ast, language.errors as errors
-from language.ast import varExprStatement
+from language.ast import varExprStatement, ifStatement
 
 
-class Parser:
-    def __init__(self):
-        self.globalNode = ast.emptyStatement(0, None)
-        self.currentIndent = 0
+
     
-    def parse(self, tokens):
-        currentPos = 0
-        isString = False
-        tokenExpr = []
+def parse(tokens, currentIndent):
+    parseResult = ''
+    currentPos = 0
+    isString = False
 
-        while currentPos < len(tokens):
-            currentToken = tokens[currentPos]
+    internalExpr = []
+    tokenExpr = []
 
-            if currentToken == '=': #변수 선언문 처리
-                try:
-                    if currentPos - 1 >= 0:
-                        varName = tokens[currentPos - 1]
-                    else:
-                        raise errors.missingNameTypeError
-                except IndexError:
+    while currentPos < len(tokens):
+        currentToken = tokens[currentPos]
+
+        if currentToken == '=': #변수 선언문 처리
+            try:
+                if currentPos - 1 >= 0:
+                    varName = tokens[currentPos - 1]
+                else:
                     raise errors.missingNameTypeError
+            except IndexError:
+                raise errors.missingNameTypeError
                 
-                currentPos += 1 #'='를 더하는것을 방지
-                
-                try:
-                    while True: #선언문 종료일때까지/문자열 안에 'EOS'가 아니면
-                        if tokens[currentPos] == 'EOS' and not(isString):
-                            break
+            currentPos += 1 #'=' 더하는것을 방지
 
-                        if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
-                            isString = True
+            try:
+                while True: #선언문 종료일때까지/문자열 안에 'EOS'가 아니면
+                    if tokens[currentPos] == 'EOS' and not(isString):
+                        break
+
+                    if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                        isString = True
                             
-                        elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
-                            isString = False
+                    elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                        isString = False
 
-                        tokenExpr.append(tokens[currentPos])
-                        currentPos += 1
+                    tokenExpr.append(tokens[currentPos])
+                    currentPos += 1
                         
-                except IndexError:
-                    raise errors.missingEOSError
+            except IndexError:
+                raise errors.missingEOSError
                 
-                self.globalNode.parsedCode += str(varExprStatement(self.currentIndent, varName, ''.join(tokenExpr)))
+            parseResult += str(varExprStatement(currentIndent, varName, ''.join(tokenExpr)))
 
-                tokenExpr = [] #초기화
-            else:
-                pass
+            tokenExpr = [] #초기화
+            
+        elif currentToken == 'if':
+            currentPos += 1 #'if'를 더하는것을 방지
+            opened = 1 #'if'문이 겹처 있을때 종료 감지
 
+            try:
+                while True:
+                    if tokens[currentPos] == 'then' and not(isString):
+                        break
+
+                    if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                        isString = True
+                            
+                    elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                        isString = False
+
+                    tokenExpr.append(tokens[currentPos])
+                    currentPos += 1
+
+            except IndexError:
+                raise errors.missingThenError
+                
             currentPos += 1
-        return self.globalNode.parsedCode
+
+            try:
+                while True:
+                    if tokens[currentPos] == 'END' and not(isString):
+                        opened -= 1 #하나를 닫음
+
+                    if tokens[currentPos] == 'then' and not(isString):
+                        opened += 1 #하나를 염
+                    
+                    if opened == 0: #만약 다 닫혔다면
+                        break
+
+                    if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                        isString = True
+                            
+                    elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                        isString = False
+
+                    internalExpr.append(tokens[currentPos])
+                    currentPos += 1
+                
+            except IndexError:
+                raise errors.missingEndError
+            
+       
+            parseResult += str(ifStatement(currentIndent, ''.join(tokenExpr), parse(internalExpr, currentIndent + 1)))
+
+            tokenExpr = []
+            internalExpr = [] #초기화
+                
+
+        else:
+            pass
+
+        
+        
+        currentPos += 1
+    
+    return parseResult
