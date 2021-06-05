@@ -58,6 +58,9 @@ class Lexer:
         elif self.word == '실행함' or self.word == '실행하고': self.lexResult.append('CALL') #함수를 실행
         elif self.word == '을' or self.word == '를': pass #자연스러운 처리를 위함
 
+        #클래스 처리
+        elif self.word == '의' or self.word == '에': self.lexResult.append('.')
+
         #연산자 처리
         elif self.word == '더하기': self.lexResult.append('+') 
         elif self.word == '빼기': self.lexResult.append('-')
