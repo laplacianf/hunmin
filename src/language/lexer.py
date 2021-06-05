@@ -51,6 +51,7 @@ class Lexer:
         elif self.word == '함수': self.lexResult.append('def') #def문
         elif self.word == '값': self.lexResult.append('return') #return문
         elif self.word == '반환': self.lexResult.append('EOR') #return문 종료
+        elif self.word == '실행함' or self.word == '실행하고': self.lexResult.append('CALL') #함수를 실행
         elif self.word == '을' or self.word == '를': pass #자연스러운 처리를 위함
 
         #연산자 처리

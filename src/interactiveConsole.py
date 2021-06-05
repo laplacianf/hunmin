@@ -16,6 +16,9 @@ if __name__ == '__main__':
         elif command[0] == '종료': #프로그램을 종료
             break
 
+        elif command[0] == '정보': #정보 출력
+            pass
+
         elif command[0] == '컴파일': #프로그램 실행
             compile.compile(command[1])
             print(f'{command[1]}의 컴파일이 완료되었습니다')

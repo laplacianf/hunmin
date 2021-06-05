@@ -9,8 +9,9 @@ def parse(tokens, currentIndent):
     currentPos = 0
     isString = False
 
-    internalExpr = []
-    tokenExpr = []
+    previousExpr = '' #현재 전까지의, 내부적으로 정의되지 않은 함수/클래스 처리
+    internalExpr = [] #블럭 안에 구문
+    tokenExpr = [] 
 
     while currentPos < len(tokens):
         currentToken = tokens[currentPos]
@@ -150,10 +151,19 @@ def parse(tokens, currentIndent):
 
             tokenExpr = []
             internalExpr = [] #초기화
-                
+        
+        elif currentToken == 'CALL': #함수 실행
+            parseResult += currentIndent * '    ' + previousExpr + '\n' #현재 전까지의 내용을 더함
+
+            previousExpr = '' #초기화
 
         else:
-            pass
+            try:
+                if tokens[currentPos + 1] != '=': #변수 이름을 더하는 것을 방지
+                    previousExpr += currentToken #내용에 현재 토큰 더하기
+            
+            except IndexError:
+                previousExpr += currentToken #만약 코드의 마지막 문자라면
 
         
         

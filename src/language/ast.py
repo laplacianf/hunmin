@@ -15,7 +15,7 @@ class varExprStatement:
         self.value = value
     
     def __repr__(self):
-        return '{}{} = {}\n'.format(self.indent * '    ', self.name, self.value)
+        return '\n{}{} = {}\n'.format(self.indent * '    ', self.name, self.value)
 
 
 class ifStatement:
@@ -26,7 +26,7 @@ class ifStatement:
         self.parsedCode = parsedCode
     
     def __repr__(self):
-        return '{}if {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
+        return '\n{}if {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
 
 
 class elifStatement:
@@ -37,4 +37,4 @@ class elifStatement:
         self.parsedCode = parsedCode
     
     def __repr__(self):
-        return '{}elif {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
+        return '\n{}elif {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
