@@ -27,3 +27,14 @@ class ifStatement:
     
     def __repr__(self):
         return '{}if {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
+
+
+class elifStatement:
+    def __init__(self, indent, expr, parsedCode):
+        self.indent = indent
+        self.expr = expr
+
+        self.parsedCode = parsedCode
+    
+    def __repr__(self):
+        return '{}elif {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
