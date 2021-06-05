@@ -5,6 +5,7 @@ class Lexer:
 
     <함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 을 함|를 함|함 -> def <함수명>(<args>): <command>
     <return문> := 값 <expr> 을|를 반환 -> return <expr>
+    <함수 실행> := <함수명>(<args>) 실행함|실행하고
 
     <if문> := 만약 <expr> 라면|이면 <command> 을 함|를 함|함 -> if <expr>: <command>
     <else문> := 아니면 <command> 을 함|를 함|함 -> else: <command>
@@ -19,7 +20,10 @@ class Lexer:
         <else문> |
         <elif문> |
         <while문> |
+        <for문> |
         <함수 정의> |
+        <return문> |
+        <함수 실행>
         '''
         self.currentPos = 0
         self.word = ''
