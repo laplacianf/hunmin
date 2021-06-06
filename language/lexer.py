@@ -58,8 +58,8 @@ class Lexer:
         elif self.word == '가아님' or self.word == '이아님': self.lexResult.append('!=')
 
         #논리 연산자 처리
-        elif self.word == '그리고': self.lexResult.append('and')
-        elif self.word == '또는': self.lexResult.append('or')
+        elif self.word == '그리고': self.lexResult.append(' and ')
+        elif self.word == '또는': self.lexResult.append(' or ')
 
         #bool 처리
         elif self.word == '참': self.lexResult.append('True')

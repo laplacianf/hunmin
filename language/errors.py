@@ -17,3 +17,7 @@ class missingEndError(SyntaxError):
 class missingEORError(SyntaxError):
     def __init__(self):
         super().__init__("'반환함' 혹은 '반환하고'가 없습니다")
+
+class missingEqualError(SyntaxError):
+    def __init__(self):
+        super().__init__("'은' 혹은 '는'이 없습니다")

@@ -67,3 +67,13 @@ class returnStatement:
     
     def __repr__(self):
         return '\n{}return {}\n'.format(self.indent * '    ', self.expr)
+
+class functionStatement:
+    def __init__(self, indent, name, parsedCode):
+        self.indent = indent
+        self.name = name
+
+        self.parsedCode = parsedCode
+    
+    def __repr__(self):
+        return '\n{}def {}:\n{}\n'.format(self.indent * '    ', self.name, self.parsedCode)

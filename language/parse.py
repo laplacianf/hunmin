@@ -1,6 +1,5 @@
 import language.errors as errors
-from language.ast import varExprStatement, ifStatement, elifStatement, elseStatement, whileStatement, returnStatement
-
+from language.ast import functionStatement, varExprStatement, ifStatement, elifStatement, elseStatement, whileStatement, returnStatement, functionStatement
 
 
     
@@ -50,7 +49,7 @@ def parse(tokens, currentIndent):
             
         elif currentToken == 'if':
             currentPos += 1 #'if'를 더하는것을 방지
-            opened = 1 #'if'문이 겹처 있을때 종료 감지
+            opened = 1 #특정 문이 겹처 있을때 종료 감지
 
             try:
                 while True:
@@ -76,7 +75,7 @@ def parse(tokens, currentIndent):
                     if tokens[currentPos] == 'END' and not(isString):
                         opened -= 1 #하나를 닫음
 
-                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)):
+                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)) or (tokens[currentPos] == 'def' and not(isString)):
                         opened += 1 #하나를 염
                     
                     if opened == 0: #만약 다 닫혔다면
@@ -102,7 +101,7 @@ def parse(tokens, currentIndent):
 
         elif currentToken == 'elif':
             currentPos += 1 #'elif'를 더하는것을 방지
-            opened = 1 #'elif'문이 겹처 있을때 종료 감지
+            opened = 1 #특정 문이 겹처 있을때 종료 감지
 
             try:
                 while True:
@@ -128,7 +127,7 @@ def parse(tokens, currentIndent):
                     if tokens[currentPos] == 'END' and not(isString):
                         opened -= 1 #하나를 닫음
 
-                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)):
+                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)) or (tokens[currentPos] == 'def' and not(isString)):
                         opened += 1 #하나를 염
                     
                     if opened == 0: #만약 다 닫혔다면
@@ -154,14 +153,14 @@ def parse(tokens, currentIndent):
         
         elif currentToken == 'else':
             currentPos += 1
-            opened = 1 #'else'문이 겹쳐있는지 확인
+            opened = 1 #특정 문이 겹쳐있는지 확인
 
             try:
                 while True:
                     if tokens[currentPos] == 'END' and not(isString):
                         opened -= 1 #하나를 닫음
 
-                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)):
+                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)) or (tokens[currentPos] == 'def' and not(isString)):
                         opened += 1 #하나를 염
                     
                     if opened == 0: #만약 다 닫혔다면
@@ -186,14 +185,14 @@ def parse(tokens, currentIndent):
         
         elif currentToken == 'while':
             currentPos += 1
-            opened = 1 #'else'문이 겹쳐있는지 확인
+            opened = 1 #특정 문이 겹쳐있는지 확인
 
             try:
                 while True:
                     if tokens[currentPos] == 'END' and not(isString):
                         opened -= 1 #하나를 닫음
 
-                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)):
+                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)) or (tokens[currentPos] == 'def' and not(isString)):
                         opened += 1 #하나를 염
                     
                     if opened == 0: #만약 다 닫혔다면
@@ -248,6 +247,58 @@ def parse(tokens, currentIndent):
         
         elif currentToken == 'for':
             pass
+
+        elif currentToken == 'def':
+            currentPos += 1
+            opened = 1 #특정 문이 겹쳐있는지 확인
+
+            functionName = '' #함수의 이름
+
+            try:
+                while True:
+                    if tokens[currentPos] == '=' and not(isString):
+                            break
+
+                    if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                        isString = True
+                                
+                    elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                        isString = False
+                    
+                    functionName += tokens[currentPos]
+                    currentPos += 1
+                
+            except IndexError:
+                raise errors.missingEqualError
+            
+            currentPos += 1 #'=' 더하는 것을 방지
+            
+            try:
+                while True:
+                    if tokens[currentPos] == 'END' and not(isString):
+                        opened -= 1 #하나를 닫음
+
+                    if (tokens[currentPos] == 'then' and not(isString)) or (tokens[currentPos] == 'while' and not(isString)) or (tokens[currentPos] == 'else' and not(isString)) or (tokens[currentPos] == 'def' and not(isString)):
+                        opened += 1 #하나를 염
+                    
+                    if opened == 0: #만약 다 닫혔다면
+                        break
+
+                    if tokens[currentPos] == '"' and not(isString): #만약 '"'인데 문자열이 아니면 문자열을 시작
+                        isString = True
+                            
+                    elif tokens[currentPos] == '"' and isString: #만약 '"'인데 문자열이면 문자열을 종료
+                        isString = False
+
+                    internalExpr.append(tokens[currentPos])
+                    currentPos += 1
+                
+            except IndexError:
+                raise errors.missingEndError
+            
+            parseResult += str(functionStatement(currentIndent, functionName, parse(internalExpr, currentIndent + 1)))
+            
+            internalExpr = [] #초기화
 
         else:
             try:
