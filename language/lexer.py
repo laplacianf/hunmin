@@ -1,30 +1,5 @@
 class Lexer:
     def __init__(self, code):
-        '''
-    <변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
-
-    <함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 을 함|를 함|함 -> def <함수명>(<args>): <command>
-    <return문> := 값 <expr> 을|를 반환함|반환하고 -> return <expr>
-    <함수 실행> := <함수명>(<args>) 실행함|실행하고
-
-    <if문> := 만약 <expr> 라면|이면 <command> 을 함|를 함|함 -> if <expr>: <command>
-    <else문> := 아니면 <command> 을 함|를 함|함 -> else: <command>
-    <elif문> := 아니고 <expr> 라면|이면 <command> 을 함|를 함|함 -> elif <expr>: <command>
-
-    <while문> := <expr> 인 동안 <command> 을 함|를 함|함 -> while <expr> : <command>
-    <for문> := 각각의 <list>의 <변수명> 에 대해 <command> 을 함|를 함|함 -> for <변수명> in <list>: <command>
-
-    <command> :=
-        <변수 정의> |
-        <if문> |
-        <else문> |
-        <elif문> |
-        <while문> |
-        <for문> |
-        <함수 정의> |
-        <return문> |
-        <함수 실행>
-        '''
         self.currentPos = 0
         self.word = ''
 
@@ -48,7 +23,7 @@ class Lexer:
         elif self.word == '이고': self.lexResult.append('EOS') #임과 동일
         elif self.word == '함' or self.word == '하고': self.lexResult.append('END') #:가 포함된 문의 종료
         elif self.word == '이면' or self.word == '라면': self.lexResult.append('then') #:가 포함된 문의 시작
-        elif self.word == '인': self.lexResult.append('while') #while문
+        elif self.word == '동안': self.lexResult.append('while') #while문
         elif self.word == '만약': self.lexResult.append('if') #if문
         elif self.word == '아니면': self.lexResult.append('else') #else문
         elif self.word == '아니고': self.lexResult.append('elif') #elif문
@@ -56,7 +31,7 @@ class Lexer:
         elif self.word == '값': self.lexResult.append('return') #return문
         elif self.word == '반환함' or self.word == '반환하고': self.lexResult.append('EOR') #return문 종료
         elif self.word == '실행함' or self.word == '실행하고': self.lexResult.append('CALL') #함수를 실행
-        elif self.word == '을' or self.word == '를': pass #자연스러운 처리를 위함
+        elif self.word == '을' or self.word == '를' or self.word == '인': pass #자연스러운 처리를 위함
 
         #클래스 처리
         elif self.word == '의' or self.word == '에': self.lexResult.append('.')

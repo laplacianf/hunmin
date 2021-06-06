@@ -25,18 +25,24 @@ if __name__ == '__main__':
             print(f'{command[1]}의 컴파일이 완료되었습니다')
         
         elif command[0] == '실행':
-            compile.compile(command[1])
-            print(f'{command[1]}의 컴파일이 완료되었습니다')
+            try:
+                compile.compile(command[1])
+                print(f'{command[1]}의 컴파일이 완료되었습니다')
 
-            #컴파일 후 .py 파일 찾기
-            compiledFileName = command[1].split('.') 
-            del compiledFileName[-1]
+                #컴파일 후 .py 파일 찾기
+                compiledFileName = command[1].split('.') 
+                del compiledFileName[-1]
 
-            compiledFileName = '.'.join(compiledFileName) + '.py'
+                compiledFileName = '.'.join(compiledFileName) + '.py'
 
-            with open(compiledFileName, 'r', encoding='UTF8') as File: compiledCode = ''.join(File.readlines())
+                with open(compiledFileName, 'r', encoding='UTF8') as File: compiledCode = ''.join(File.readlines())
 
-            exec(compiledCode) #코드 실행
+            
+                exec(compiledCode) #코드 실행
+            
+            except BaseException as e:
+                print(e) #에러 출력
+
 
             print(f'{command[1]}의 실행이 완료되었습니다')
 

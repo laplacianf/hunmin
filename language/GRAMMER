@@ -1,0 +1,23 @@
+<변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
+
+<함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 함 -> def <함수명>(<args>): <command>
+<return문> := 값 <expr> 을|를 반환함|반환하고 -> return <expr>
+<함수 실행> := <함수명>(<args>) 실행함|실행하고
+
+<if문> := 만약 <expr> 라면|이면 <command> 함 -> if <expr>: <command>
+<else문> := 아니면 <command> 함 -> else: <command>
+<elif문> := 아니고 <expr> 라면|이면 <command> 을 함|를 함|함 -> elif <expr>: <command>
+
+<while문> := <expr> 동안 <command> 함 -> while <expr> : <command>
+<for문> := 각각의 <list>의 <변수명> 에 대해 <command> 함 -> for <변수명> in <list>: <command>
+
+<command> :=
+    <변수 정의> |
+    <if문> |
+    <else문> |
+    <elif문> |
+    <while문> |
+    <for문> |
+    <함수 정의> |
+    <return문> |
+    <함수 실행>
