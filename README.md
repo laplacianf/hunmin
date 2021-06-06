@@ -28,7 +28,7 @@
 자세한 문법이나 개발 정보는 `wiki`의 `개발정보`를 참고하시길 바랍니다.
 
 ### 도움을 주신 분들
-임우진 : `example/평균값.hmn` 
+(임우진)[https://github.com/HAPPYJIN4869] : `example/평균값.hmn` 
 
 ### 1. `.hmn` 파일 실행법
 상호작용(`interaction`)이 존재하는 실행환경에서 `.hmn` 파일을 실행하려면,
