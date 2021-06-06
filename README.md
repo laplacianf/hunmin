@@ -1,6 +1,7 @@
 # hunmin
 ![GitHub](https://img.shields.io/badge/python-3.8-brightgreen)
 ![GitHub](https://img.shields.io/badge/release-21.6-blue)
+
 백성을 가르치는 바른 언어
 
 ```python
