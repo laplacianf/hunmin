@@ -26,7 +26,7 @@
 상호작용이 없는 실행환경에서 `.hmn` 파일을 실행하려면,
 `hunmin.py` 혹은 `hunmin.exe`에서
 
-`$ hunmin.exe --실행 <파일명.hmn>` 또는 `$ hunmin.exe --실행 <파일명.hmn>`
+`$ hunmin.py --실행 <파일명.hmn>` 또는 `$ hunmin.exe --실행 <파일명.hmn>`
 
 을 입력합니다.
 
