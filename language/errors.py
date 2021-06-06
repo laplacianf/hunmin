@@ -13,3 +13,7 @@ class missingThenError(SyntaxError):
 class missingEndError(SyntaxError):
     def __init__(self):
         super().__init__("'함' 혹은 '하고'가 없습니다")
+
+class missingEORError(SyntaxError):
+    def __init__(self):
+        super().__init__("'반환함' 혹은 '반환하고'가 없습니다")

@@ -48,3 +48,12 @@ class elseStatement:
     
     def __repr__(self):
         return '\n{}else:\n{}\n'.format(self.indent * '    ', self.parsedCode)
+
+
+class returnStatement:
+    def __init__(self, indent, expr):
+        self.indent = indent
+        self.expr = expr
+    
+    def __repr__(self):
+        return '\n{}return {}\n'.format(self.indent * '    ', self.expr)

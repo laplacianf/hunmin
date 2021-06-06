@@ -4,7 +4,7 @@ class Lexer:
     <변수 정의> := <변수명> 은|는 <expr> 임|이고 -> <변수명> = <expr>
 
     <함수 정의> := 함수 <함수명>(<args>) 은|는 <command> 을 함|를 함|함 -> def <함수명>(<args>): <command>
-    <return문> := 값 <expr> 을|를 반환 -> return <expr>
+    <return문> := 값 <expr> 을|를 반환함|반환하고 -> return <expr>
     <함수 실행> := <함수명>(<args>) 실행함|실행하고
 
     <if문> := 만약 <expr> 라면|이면 <command> 을 함|를 함|함 -> if <expr>: <command>
@@ -54,7 +54,7 @@ class Lexer:
         elif self.word == '아니고': self.lexResult.append('elif') #elif문
         elif self.word == '함수': self.lexResult.append('def') #def문
         elif self.word == '값': self.lexResult.append('return') #return문
-        elif self.word == '반환': self.lexResult.append('EOR') #return문 종료
+        elif self.word == '반환함' or self.word == '반환하고': self.lexResult.append('EOR') #return문 종료
         elif self.word == '실행함' or self.word == '실행하고': self.lexResult.append('CALL') #함수를 실행
         elif self.word == '을' or self.word == '를': pass #자연스러운 처리를 위함
 
