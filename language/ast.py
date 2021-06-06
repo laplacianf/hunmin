@@ -49,6 +49,16 @@ class elseStatement:
     def __repr__(self):
         return '\n{}else:\n{}\n'.format(self.indent * '    ', self.parsedCode)
 
+class whileStatement:
+    def __init__(self, indent, expr, parsedCode):
+        self.indent = indent
+        self.expr = expr
+
+        self.parsedCode = parsedCode
+    
+    def __repr__(self):
+        return '\n{}while {}:\n{}\n'.format(self.indent * '    ', self.expr, self.parsedCode)
+
 
 class returnStatement:
     def __init__(self, indent, expr):
