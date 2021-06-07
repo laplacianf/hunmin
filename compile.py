@@ -27,3 +27,4 @@ def compile(fileName):
     compiledPythonFileName = '.'.join(fileName) + '.py'
 
     with open(compiledPythonFileName, 'w', encoding='UTF8') as File: File.write(hunminHeader + parse(hunminLexer.lex(), 0))
+
