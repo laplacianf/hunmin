@@ -24,6 +24,7 @@ class Lexer:
         elif self.word == '함' or self.word == '하고': self.lexResult.append('END') #:가 포함된 문의 종료
         elif self.word == '이면' or self.word == '라면': self.lexResult.append('then') #:가 포함된 문의 시작
         elif self.word == '동안': self.lexResult.append('while') #while문
+        elif self.word == '종료': self.lexResult.append('break') #break문
         elif self.word == '만약': self.lexResult.append('if') #if문
         elif self.word == '아니면': self.lexResult.append('else') #else문
         elif self.word == '아니고': self.lexResult.append('elif') #elif문

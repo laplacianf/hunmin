@@ -213,6 +213,9 @@ def parse(tokens, currentIndent):
             parseResult += str(whileStatement(currentIndent, previousExpr, parse(internalExpr, currentIndent + 1)))
 
             previousExpr = '' #초기화
+        
+        elif currentToken == 'break':
+            parseResult += '\n{}break\n'.format(currentIndent * '    ')
 
         
         elif currentToken == 'CALL': #함수 실행
