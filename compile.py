@@ -10,11 +10,11 @@ def compile(fileName):
         
         #hunmin 헤더 추가
         hunminHeader = f'''######################################################
-    # 이 파일은 훈민 v{config.version} 으로 작성되었습니다
-    # 
-    # {datetime.today()}
-    ######################################################\n
-    '''
+# 이 파일은 훈민 v{config.version} 으로 작성되었습니다
+# 
+# {datetime.today()}
+######################################################\n
+'''
 
         with open(fileName, 'r', encoding='UTF8') as File: hunminCode = ' '.join(''.join(File.readlines()).split('\n')) #줄바꿈 무시
 
