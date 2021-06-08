@@ -79,6 +79,7 @@ class Lexer:
         #내장함수 처리
         elif self.word == '출력': self.lexResult.append('print')
         elif self.word == '입력받기': self.lexResult.append('input')
+        elif self.word == '추가': self.lexResult.append('append')
 
         elif self.word != '': self.lexResult.append(self.word)
         self.word = ''
