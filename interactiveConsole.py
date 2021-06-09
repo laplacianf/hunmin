@@ -10,15 +10,11 @@ if __name__ == '__main__':
         if command[0] == '도움말': #도움말을 출력
             print('도움말 목록입니다 :')
             print('종료 : 훈민을 종료합니다')
-            print('정보 : 현재 훈민의 정보를 출력합니다')
             print('컴파일 <파일명.hmn> : 훈민 파일을 컴파일합니다')
             print('실행 <파일명.hmn> : 훈민 파일을 컴파일 후 실행합니다')
         
         elif command[0] == '종료': #프로그램을 종료
             break
-
-        elif command[0] == '정보': #정보 출력
-            pass
 
         elif command[0] == '컴파일': #프로그램 실행
             compile.compile(command[1])
