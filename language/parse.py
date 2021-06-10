@@ -15,15 +15,9 @@ def parse(tokens, currentIndent):
     while currentPos < len(tokens):
         currentToken = tokens[currentPos]
 
-        if currentToken == '=': #변수 선언문 처리
-            try:
-                if currentPos - 1 >= 0:
-                    varName = tokens[currentPos - 1]
-                else:
-                    raise errors.missingNameTypeError
-            except IndexError:
-                raise errors.missingNameTypeError
-                
+        if currentToken == '=': #변수 선언문 처리     
+            varName = previousExpr
+            previousExpr = '' #초기화           
             currentPos += 1 #'=' 더하는것을 방지
 
             try:
@@ -304,12 +298,7 @@ def parse(tokens, currentIndent):
             internalExpr = [] #초기화
 
         else:
-            try:
-                if tokens[currentPos + 1] != '=': #변수 이름을 더하는 것을 방지
-                    previousExpr += currentToken #내용에 현재 토큰 더하기
-            
-            except IndexError:
-                previousExpr += currentToken #만약 코드의 마지막 문자라면
+            previousExpr += currentToken
 
         
         
