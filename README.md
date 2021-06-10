@@ -32,16 +32,16 @@
 
 ### 1. `.hmn` 파일 실행법
 상호작용(`interaction`)이 존재하는 실행환경에서 `.hmn` 파일을 실행하려면,
-`interactiveConsole.py`를 실행하거나, 혹은 `release`의 `interactiveHunminConsole.exe`를 실행시키면 됩니다.
+`interactiveConsole.py`를 실행합니다.
 
 명령어 : `실행 <파일명.hmn>`
 
 상호작용이 없는 실행환경에서 `.hmn` 파일을 실행하려면,
-`hunmin.py` 혹은 `hunmin.exe`에서
+`hunmin.py` 에서
 
-`$ hunmin.py --실행 <파일명.hmn>` 또는 `$ hunmin.exe --실행 <파일명.hmn>`
+`$ py hunmin.py --실행 <파일명.hmn>` 
 
-을 입력합니다.
+를 입력합니다.
 
 파일은 `.py` 파일로 컴파일 되며, `.py` 파일을 실행하는 방식으로 작동합니다.
 
